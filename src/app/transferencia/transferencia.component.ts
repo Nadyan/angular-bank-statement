@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
     selector:'app-transferencia',
@@ -6,10 +6,17 @@ import { Component } from "@angular/core";
     styleUrls:['./transferencia.component.scss']
 })
 export class TransferenciaComponent {
+
+    @Output()
+    aoTransferir = new EventEmitter<any>();
+
     valor: number;
     destino: number;
     
     transferir() {
-        alert("Solicitada nova transferência\nValor: " + this.valor + "\nDestino: " + this.destino);
+        this.aoTransferir.emit({
+            valor: this.valor,
+            destino: this.destino
+        });
     }
 }
